@@ -6,104 +6,67 @@
 <title>LA PLATENSE - Radio Online</title>
 
 <style>
-    * {
-        box-sizing: border-box;
-    }
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #111;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
 
-    body {
-        margin: 0;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #111111;
-        color: #ffffff;
-        font-family: Arial, sans-serif;
-        text-align: center;
-    }
+.radio {
+    width: 100%;
+    max-width: 520px;
+    padding: 40px 25px;
+}
 
-    .radio {
-        width: 100%;
-        max-width: 520px;
-        padding: 40px 25px;
-    }
+h1 {
+    margin: 0;
+    font-size: 48px;
+    letter-spacing: 4px;
+}
 
-    h1 {
-        margin: 0;
-        font-size: 48px;
-        letter-spacing: 4px;
-    }
+h2 {
+    margin: 8px 0 25px;
+    font-size: 25px;
+    font-weight: normal;
+    letter-spacing: 3px;
+}
 
-    h2 {
-        margin: 8px 0 25px;
-        font-size: 25px;
-        font-weight: normal;
-        letter-spacing: 3px;
-    }
+.lema {
+    font-size: 19px;
+    line-height: 1.5;
+    margin-bottom: 35px;
+}
 
-    .lema {
-        font-size: 19px;
-        line-height: 1.5;
-        margin-bottom: 35px;
-    }
+.play {
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    border: 5px solid #d4af37;
+    background: #d4af37;
+    color: #111;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    line-height: 1.2;
+    margin: 0 auto;
+}
 
-    .play {
-        width: 210px;
-        height: 210px;
-        border-radius: 50%;
-        border: 5px solid #d4af37;
-        background: #d4af37;
-        color: #111111;
-        font-size: 30px;
-        font-weight: bold;
-        cursor: pointer;
-        box-shadow: 0 0 25px rgba(212,175,55,0.35);
-    }
-
-    .play:active {
-        transform: scale(0.96);
-    }
-
-    .estado {
-        margin-top: 25px;
-        font-size: 20px;
-        min-height: 28px;
-    }
-
-    .creditos {
-        margin-top: 40px;
-        font-size: 15px;
-        line-height: 1.5;
-        color: #cccccc;
-    }
-
-    .whatsapp {
-        display: inline-block;
-        margin-top: 25px;
-        padding: 14px 22px;
-        border-radius: 8px;
-        background: #25D366;
-        color: white;
-        text-decoration: none;
-        font-size: 18px;
-        font-weight: bold;
-    }
-
-    @media (max-width: 480px) {
-        h1 {
-            font-size: 38px;
-        }
-
-        h2 {
-            font-size: 21px;
-        }
-
-        .play {
-            width: 180px;
-            height: 180px;
-            font-size: 27px;
-        }
-    }
+.creditos {
+    margin-top: 40px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #ccc;
+}
 </style>
 </head>
 
@@ -111,65 +74,25 @@
 
 <div class="radio">
 
-    <h1>LA PLATENSE</h1>
-    <h2>RADIO ONLINE</h2>
+<h1>LA PLATENSE</h1>
 
-    <div class="lema">
-        Raíces rioplatenses<br>
-        Folklore · Tango · Patria Grande
-    </div>
+<h2>RADIO ONLINE</h2>
 
-    <button class="play" id="playButton">
-        ▶<br>ESCUCHAR
-    </button>
-
-    <div class="estado" id="estado">
-        Tocá el botón para escuchar
-    </div>
-
-    <audio id="radioAudio" preload="none">
-        <source src="https://uk23freenew.listen2myradio.com/live.mp3?typeportmount=s1_17978_stream_737318844" type="audio/mpeg">
-    </audio>
-
-    <div class="creditos">
-        Producción, Dirección y Musicalización:<br>
-        <strong>ARI THALER</strong>
-    </div>
-
+<div class="lema">
+Raíces rioplatenses<br>
+Folklore · Tango · Patria Grande
 </div>
 
-<script>
-const audio = document.getElementById("radioAudio");
-const boton = document.getElementById("playButton");
-const estado = document.getElementById("estado");
+<a href="http://laplatense.radio12345.com/" target="_blank" class="play">
+▶<br>ESCUCHAR
+</a>
 
-boton.addEventListener("click", function() {
+<div class="creditos">
+Producción, Dirección y Musicalización:<br>
+<strong>ARI THALER</strong>
+</div>
 
-    if (audio.paused) {
-
-        estado.textContent = "Conectando con LA PLATENSE...";
-
-        audio.play()
-            .then(() => {
-                boton.innerHTML = "❚❚<br>PAUSAR";
-                estado.textContent = "🔴 LA PLATENSE · EN VIVO";
-            })
-            .catch(() => {
-                estado.textContent = "No se pudo iniciar la transmisión.";
-            });
-
-    } else {
-
-        audio.pause();
-        boton.innerHTML = "▶<br>ESCUCHAR";
-        estado.textContent = "Transmisión pausada";
-    }
-});
-
-audio.addEventListener("error", function() {
-    estado.textContent = "La transmisión no está disponible en este momento.";
-});
-</script>
+</div>
 
 </body>
 </html>
